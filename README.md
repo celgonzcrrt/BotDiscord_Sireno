@@ -6,3 +6,9 @@ Un bot de prueba para ir practicando, se irá actualizando esta documentación s
 - Responde a mensajes
 - Saluda
 - Esas cosas de bot
+
+## [*\] Funcionalidades por añadir
+[ ] Comandos de gestión
+[ ] Sistema de roles
+[ ] Gamificación y eventos
+[ ] Ooc (idea sacada de un vídeo de YouTube)
