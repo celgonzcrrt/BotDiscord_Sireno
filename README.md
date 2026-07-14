@@ -1,7 +1,7 @@
 # 「🧜‍♂️」 Sireno bot
 Un bot de prueba para ir practicando, se irá actualizando esta documentación según las funcionalidades añadidas.
 
-## ٭ ¿Qué hace el bot?
+## ▶ ¿Qué hace el bot?
 > Utiliza el comando 's!'
 ### Moderación
 - Expulsión de miembros
@@ -12,7 +12,7 @@ Un bot de prueba para ir practicando, se irá actualizando esta documentación s
 - Saluda
 - Esas cosas de bot
 
-## ٭ Funcionalidades por añadir
+## ▶ Funcionalidades por añadir
 ☐ Comandos de gestión <br>
 ☐ Sistema de roles <br>
 ☐ Gamificación y eventos <br>
