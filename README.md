@@ -4,8 +4,9 @@ Un bot de prueba para ir practicando, se irá actualizando esta documentación s
 ## ▶ ¿Qué hace el bot?
 > Utiliza el comando 's!'
 ### Moderación
-- Expulsión de miembros
+- Expulsión y baneo de miembros
 - Eliminación masiva de mensajes
+- Dar/Quitar rol a un usuario
 
 ### Otro
 - Responde a mensajes
@@ -14,6 +15,5 @@ Un bot de prueba para ir practicando, se irá actualizando esta documentación s
 
 ## ▶ Funcionalidades por añadir
 ☐ Comandos de gestión <br>
-☐ Sistema de roles <br>
 ☐ Gamificación y eventos <br>
 ☐ Ooc (idea sacada de un vídeo de YouTube) <br>
