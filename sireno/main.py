@@ -4,8 +4,11 @@ import logging
 from dotenv import load_dotenv
 import os
 
+from sireno.commands.roll import rollDice
+from sireno.events.setupEvets import startEvents
+
 # Discord setup
-load_dotenv() # loads the .env file
+load_dotenv() # carga el .env 
 token = os.getenv('DISCORD_TOKEN')
 
 handler = logging.FileHandler(filename='discord.log', encoding='utf-8', mode='w')
@@ -13,41 +16,31 @@ intents = discord.Intents.default()
 intents.message_content = True
 intents.members = True
 
-# Create the bot
-bot = commands.Bot(command_prefix='s!', intents=intents) # the prefix used will be s!
+# Crear el bot
+bot = commands.Bot(command_prefix='s!', intents=intents) # el prefijo usado será s!
 
-# *** Handling events
-# Default
-@bot.event
-async def on_ready():
-    print("Hola!")
+# *** Eventos
+startEvents(bot)
 
-# Member joins
-@bot.event
-async def on_member_join(member):
-    await member.send(f"Bienvenido al server {member.name}")
+# *** Comandos
 
-# Message sent
-@bot.event
-async def on_message(message):
-    if message.author == bot.user: # so that bot doesn't reply to itself
+# Dado
+@bot.command
+async def roll(ctx, msg):
+    if rollDice(msg) == -1:
+        await ctx.reply("Debes escribir un dado, ejemplo: d20")
         return
+    await ctx.reply(f"El resultado de tirar un {msg} es: {rollDice(msg)}")
     
-    if "mierda" in message.content.lower():
-        await message.delete()
-        await message.channel.send(f"{message.author.mention} no digas eso!!")
-    
-    await bot.process_commands(message) # mandatory line
 
-# *** Commands
 # Say hello
 @bot.command()
 async def hello(ctx): # s!hello
     await ctx.send(f"Hola {ctx.author.mention}!")
 
-# Add role
+# Añadir rol
 @bot.command()
-async def assign(ctx): # role must be under bot role in discord
+async def assign(ctx): # el rol debe estar debajo del rol del bot
     role = discord.utils.get(ctx.guild.roles, name="PSOE")
     if role:
         await ctx.author.add_roles(role)
@@ -55,7 +48,7 @@ async def assign(ctx): # role must be under bot role in discord
     else:
         await ctx.send("El rol no existe")
 
-# Remove role
+# Eliminar rol
 @bot.command()
 async def remove(ctx):
     role = discord.utils.get(ctx.guild.roles, name="PSOE")
@@ -65,7 +58,7 @@ async def remove(ctx):
     else:
         await ctx.send("El rol no existe")
 
-# Secret command if you have psoe
+# Secret command 
 @bot.command()
 @commands.has_role("PSOE")
 async def secret(ctx):
@@ -75,16 +68,16 @@ async def secret_error(ctx, error):
     if isinstance(error, commands.MissingRole):
         await ctx.send("no tienes permiso")
 
-# Send DM
+# Enviar DM
 async def dm(ctx, *, msg):
     await ctx.author.send(f"You said {msg}")
 
-# Direct reply to command
+# Respuesta directa a comando
 @bot.command()
 async def reply(ctx):
     await ctx.reply("esta es una respuesta a tu mensaje")
     
-# Create embeded/poll
+# Crear embed/encuesta
 @bot.command()
 async def poll(ctx, *, question):
     embed = discord.Embed(title="New poll", description=question)
@@ -92,5 +85,5 @@ async def poll(ctx, *, question):
     await poll_message.add_reaction("👍")
     await poll_message.add_reaction("👎")
 
-# *** Run the bot
+# *** Run
 bot.run(token, log_handler=handler)   
