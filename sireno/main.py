@@ -4,8 +4,7 @@ import logging
 from dotenv import load_dotenv
 import os
 
-from sireno.commands.roll import rollDice
-from sireno.events.setupEvets import startEvents
+from events import startEvents
 
 # Discord setup
 load_dotenv() # carga el .env 
@@ -19,19 +18,20 @@ intents.members = True
 # Crear el bot
 bot = commands.Bot(command_prefix='s!', intents=intents) # el prefijo usado será s!
 
+# Cargar cogs
+# initial_extensions = [
+#     'cogs.moderation_cog',
+# ]
+# for extension in initial_extensions:
+#     try:
+#         bot.load_extension(extension)
+#     except Exception as e:
+#         print(f'Fallo al cargar la extensión {extension}.')
+
 # *** Eventos
 startEvents(bot)
 
 # *** Comandos
-
-# Dado
-@bot.command
-async def roll(ctx, msg):
-    if rollDice(msg) == -1:
-        await ctx.reply("Debes escribir un dado, ejemplo: d20")
-        return
-    await ctx.reply(f"El resultado de tirar un {msg} es: {rollDice(msg)}")
-    
 
 # Say hello
 @bot.command()
