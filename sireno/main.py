@@ -21,8 +21,6 @@ bot = commands.Bot(command_prefix='s!', intents=intents) # el prefijo usado ser√
 # *** Eventos
 startEvents(bot)
 
-# *** Comandos
-
 # Say hello
 @bot.command()
 async def hello(ctx): # s!hello
