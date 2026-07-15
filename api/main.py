@@ -1,7 +1,7 @@
-from fastapi import FastAPI
+from flask import Flask
 from threading import Thread
 
-app = FastAPI()
+app = Flask('')
 
 @app.get("/")
 def home():
