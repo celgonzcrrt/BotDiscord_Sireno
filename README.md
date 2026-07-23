@@ -18,3 +18,4 @@ Un bot de prueba para ir practicando, se irá actualizando esta documentación s
 ☐ Comandos de gestión <br>
 ☐ Gamificación y eventos <br>
 ☐ Ooc (idea sacada de un vídeo de YouTube) <br>
+☐ Base de datos
